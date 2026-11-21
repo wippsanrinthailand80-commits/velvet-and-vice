@@ -1,0 +1,14 @@
+{
+  "id": "mother_visit",
+  "title": "Mother's Visit",
+  "description": "Visit your mother. She's been lonely.",
+  "objectives": [
+    {"id": "visit", "text": "Visit mother's house", "done": false},
+    {"id": "talk", "text": "Have a heartfelt conversation", "done": false}
+  ],
+  "reward": {
+    "affinity": {"mother": 15},
+    "flag": "mother_visit_done",
+    "item": "tea"
+  }
+}

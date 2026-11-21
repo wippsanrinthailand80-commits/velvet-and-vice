@@ -1,0 +1,14 @@
+{
+  "id": "maya_intimate",
+  "title": "A Closer Bond",
+  "description": "Maya wants to get closer. Build enough trust first.",
+  "objectives": [
+    {"id": "affinity", "text": "Reach 20 affinity with Maya", "done": false},
+    {"id": "intimate", "text": "Share an intimate moment", "done": false}
+  ],
+  "reward": {
+    "affinity": {"maya": 10},
+    "flag": "maya_intimate_done",
+    "corruption": 5
+  }
+}

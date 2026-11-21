@@ -1,0 +1,15 @@
+{
+  "id": "kenji_lesson",
+  "title": "First Lesson",
+  "description": "Kenji offered to teach you about trust and surrender.",
+  "objectives": [
+    {"id": "visit", "text": "Visit Kenji's apartment", "done": false},
+    {"id": "learn", "text": "Complete the first lesson", "done": false}
+  ],
+  "reward": {
+    "affinity": {"kenji": 20},
+    "flag": "kenji_lesson_done",
+    "corruption": 10,
+    "item": "rope"
+  }
+}

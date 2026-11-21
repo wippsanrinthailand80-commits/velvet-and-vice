@@ -1,0 +1,101 @@
+{
+  "npc_id": "riko",
+  "nodes": {
+    "start": {
+      "text": "Well, well. A new face. I'm Riko. I assist the building manager. You look... interesting.",
+      "choices": [
+        {"text": "Thanks. You're pretty interesting yourself.", "next": "flirt", "affinity": 5},
+        {"text": "Just looking around the building.", "next": "business", "affinity": 2},
+        {"text": "Who's the manager?", "next": "manager", "affinity": 1}
+      ]
+    },
+    "flirt": {
+      "text": "Bold. I like bold. Most people here are so... tame. You don't seem tame.",
+      "choices": [
+        {"text": "I'm whatever you want me to be.", "next": "dominant", "affinity": 10, "req_affinity": 10},
+        {"text": "Just confident. Nothing more.", "next": "business", "affinity": 3},
+        {"text": "I could be tamed. By the right person.", "next": "submissive", "affinity": 8}
+      ]
+    },
+    "business": {
+      "text": "The building has many amenities. Some... not advertised. Come see me if you want the full tour.",
+      "choices": [
+        {"text": "I'm interested. What's the full tour?", "next": "tour_offer", "affinity": 5, "req_affinity": 5},
+        {"text": "Maybe later.", "next": "end", "affinity": 1}
+      ]
+    },
+    "manager": {
+      "text": "Aoi. She runs everything. The club, the tenants, the... special services. You'll meet her soon enough.",
+      "choices": [
+        {"text": "Club? What club?", "next": "club_hint", "affinity": 3},
+        {"text": "Sounds intriguing.", "next": "business", "affinity": 4}
+      ]
+    },
+    "club_hint": {
+      "text": "Let's just say... some residents have needs. Aoi fulfills them. For a price. Or for loyalty.",
+      "choices": [
+        {"text": "I might be interested in that.", "next": "tour_offer", "affinity": 8, "req_affinity": 10},
+        {"text": "Not my thing.", "next": "end", "affinity": -2}
+      ]
+    },
+    "tour_offer": {
+      "text": "Good. Meet me in the basement tonight. 10 PM. Don't be late. And... dress appropriately.",
+      "choices": [
+        {"text": "I'll be there.", "next": "end", "affinity": 5, "flag": "riko_tour_invite"},
+        {"text": "What should I wear?", "next": "dress", "affinity": 3}
+      ]
+    },
+    "dress": {
+      "text": "Something you wouldn't mind getting... removed. Trust me.",
+      "choices": [
+        {"text": "Intriguing. I'll be there.", "next": "end", "affinity": 5, "flag": "riko_tour_invite"},
+        {"text": "You're teasing me.", "next": "tease", "affinity": 6}
+      ]
+    },
+    "tease": {
+      "text": "Maybe I am. Maybe I'm not. You'll find out tonight.",
+      "choices": [
+        {"text": "I can't wait.", "next": "end", "affinity": 5, "flag": "riko_tour_invite"},
+        {"text": "We'll see.", "next": "end", "affinity": 2}
+      ]
+    },
+    "dominant": {
+      "text": "I thought so. I like someone who can take charge. Or be taken. Which is it for you?",
+      "choices": [
+        {"text": "I like being in control.", "next": "dom_path", "affinity": 10},
+        {"text": "I prefer to surrender.", "next": "sub_path", "affinity": 10},
+        {"text": "Depends on the mood.", "next": "switch_path", "affinity": 12}
+      ]
+    },
+    "submissive": {
+      "text": "A willing submissive. Rare and precious. I could teach you things... if you're ready.",
+      "choices": [
+        {"text": "Teach me. I'm ready.", "next": "sub_path", "affinity": 15, "req_affinity": 20},
+        {"text": "Maybe. Let's talk more first.", "next": "business", "affinity": 5}
+      ]
+    },
+    "dom_path": {
+      "text": "Then you'll need a partner who can handle you. Lucky for you, I can. Come to my apartment tonight.",
+      "choices": [
+        {"text": "(Go to her apartment)", "next": "end", "affinity": 15, "sex_scene": true, "pose": "standing", "flag": "riko_first_intimate", "req_affinity": 25, "corruption": 5}
+      ]
+    },
+    "sub_path": {
+      "text": "Good. Kneel for me. Right here, right now. Let's see how obedient you can be.",
+      "choices": [
+        {"text": "(Kneel)", "next": "end", "affinity": 15, "sex_scene": true, "pose": "kneeling", "flag": "riko_first_intimate", "req_affinity": 20, "corruption": 10},
+        {"text": "Not here. Not now.", "next": "business", "affinity": -3}
+      ]
+    },
+    "switch_path": {
+      "text": "A switch. The best kind. Someone who can give and take. I think we'll get along very well.",
+      "choices": [
+        {"text": "Let's test that theory.", "next": "end", "affinity": 20, "sex_scene": true, "pose": "cowgirl", "flag": "riko_first_intimate", "req_affinity": 30, "corruption": 5}
+      ]
+    },
+    "end": {
+      "text": "Until next time.",
+      "choices": []
+    }
+  }
+}

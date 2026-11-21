@@ -1,0 +1,119 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/models/environment/env_floor_wood_modular_a.glb" type="PackedScene" id=1]
+[ext_resource path="res://assets/models/environment/env_wall_concrete_modular_a.glb" type="PackedScene" id=2]
+[ext_resource path="res://assets/models/furniture/furn_bed_metal_01.glb" type="PackedScene" id=3]
+[ext_resource path="res://assets/models/furniture/furn_nightstand_wood_01.glb" type="PackedScene" id=4]
+[ext_resource path="res://assets/models/furniture/furn_lamp_table_01.glb" type="PackedScene" id=5]
+[ext_resource path="res://assets/models/furniture/furn_chair_wood_01.glb" type="PackedScene" id=6]
+[ext_resource path="res://assets/models/props/prop_dildo_realistic_a.glb" type="PackedScene" id=7]
+[ext_resource path="res://assets/models/props/prop_vibrator_wand_a.glb" type="PackedScene" id=8]
+[ext_resource path="res://assets/models/props/prop_handcuffs_metal_a.glb" type="PackedScene" id=9]
+[ext_resource path="res://assets/models/props/prop_blindfold_cloth_a.glb" type="PackedScene" id=10]
+[ext_resource path="res://assets/models/props/prop_rope_coil_a.glb" type="PackedScene" id=11]
+[ext_resource path="res://assets/models/characters/char_female_nude_base.glb" type="PackedScene" id=12]
+[ext_resource path="res://assets/models/characters/char_male_nude_base.glb" type="PackedScene" id=13]
+[ext_resource path="res://scripts/prop.gd" type="Script" id=14]
+[ext_resource path="res://scripts/character_npc.gd" type="Script" id=15]
+[ext_resource path="res://assets/models/environment/env_door_wood_01.glb" type="PackedScene" id=16]
+[ext_resource path="res://scripts/door.gd" type="Script" id=17]
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=16]
+
+[node name="Bedroom" type="Spatial"]
+
+# Floor (2x2 tiles)
+[node name="Floor" parent="." instance=ExtResource( 1 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+# Walls
+[node name="WallBack" parent="." instance=ExtResource( 2 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="WallFront" parent="." instance=ExtResource( 2 )]
+transform = Transform(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 2)
+
+[node name="WallLeft" parent="." instance=ExtResource( 2 )]
+transform = Transform(0, 0, 1, 0, 1, 0, -1, 0, 0, -2, 0, 0)
+
+[node name="WallRight" parent="." instance=ExtResource( 2 )]
+transform = Transform(0, 0, -1, 0, 1, 0, 1, 0, 0, 2, 0, 0)
+
+# Bed
+[node name="Bed" parent="." instance=ExtResource( 3 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+# Nightstand
+[node name="Nightstand" parent="." instance=ExtResource( 4 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, -1.5)
+
+# Lamp on nightstand
+[node name="Lamp" parent="." instance=ExtResource( 5 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, -1.5)
+
+# Chair
+[node name="Chair" parent="." instance=ExtResource( 6 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0.5)
+
+# Props on floor (with prop.gd script attached via separate nodes)
+[node name="PropDildo" parent="." instance=ExtResource( 7 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0, 0, 0.5)
+script = ExtResource( 14 )
+prop_id = "dildo"
+
+[node name="PropVibrator" parent="." instance=ExtResource( 8 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, 0.5)
+script = ExtResource( 14 )
+prop_id = "vibrator"
+
+[node name="PropHandcuffs" parent="." instance=ExtResource( 9 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+script = ExtResource( 14 )
+prop_id = "handcuffs"
+
+[node name="PropBlindfold" parent="." instance=ExtResource( 10 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, 0.5)
+script = ExtResource( 14 )
+prop_id = "blindfold"
+
+[node name="PropRope" parent="." instance=ExtResource( 11 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, 0.5)
+script = ExtResource( 14 )
+prop_id = "rope"
+
+# Female character
+[node name="Female" parent="." instance=ExtResource( 12 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+script = ExtResource( 15 )
+npc_id = "maya"
+display_name = "Maya"
+
+# Male character
+[node name="Male" parent="." instance=ExtResource( 13 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0, 0, -0.5)
+script = ExtResource( 15 )
+npc_id = "kenji"
+display_name = "Kenji"
+
+# Door to hallway
+[node name="DoorToHall" parent="." instance=ExtResource( 16 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+script = ExtResource( 17 )
+target_scene = "res://scenes/world/hallway.tscn"
+label = "Hallway"
+
+# Player
+[node name="Player" parent="." instance=ExtResource( 16 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+# Lighting
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform(0.707, -0.5, 0.5, 0, 0.707, 0.707, -0.707, -0.5, 0.5, 0, 5, 0)
+light_energy = 0.6
+shadow_enabled = true
+
+[node name="LampLight" type="OmniLight" parent="."]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.0, -1.5)
+light_energy = 0.8
+omni_range = 4.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]

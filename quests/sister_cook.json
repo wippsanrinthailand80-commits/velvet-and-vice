@@ -1,0 +1,14 @@
+{
+  "id": "sister_cook",
+  "title": "Sister's Cooking",
+  "description": "Yui wants to cook for you. Let her.",
+  "objectives": [
+    {"id": "eat", "text": "Eat Yui's cooking", "done": false},
+    {"id": "compliment", "text": "Compliment her cooking", "done": false}
+  ],
+  "reward": {
+    "affinity": {"sister": 15},
+    "flag": "sister_cook_done",
+    "item": "cookie"
+  }
+}

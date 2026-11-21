@@ -1,0 +1,14 @@
+{
+  "id": "aoi_trial3",
+  "title": "Trial of Abandon",
+  "description": "Aoi's final trial. Abandon all inhibitions.",
+  "objectives": [
+    {"id": "talk_aoi", "text": "Speak with Aoi about the final trial", "done": false},
+    {"id": "complete", "text": "Complete the abandon trial", "done": false}
+  ],
+  "reward": {
+    "affinity": {"aoi": 30},
+    "flag": "trial3_complete",
+    "corruption": 25
+  }
+}

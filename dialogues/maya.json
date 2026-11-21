@@ -1,0 +1,76 @@
+{
+  "npc_id": "maya",
+  "nodes": {
+    "start": {
+      "text": "Oh! You must be the new neighbor. I'm Maya. Welcome to the building!",
+      "choices": [
+        {"text": "Thanks! I'm just getting settled in.", "next": "friendly", "affinity": 2},
+        {"text": "Hey. Nice place you've got here.", "next": "flirt", "affinity": 3},
+        {"text": "I'd rather be left alone.", "next": "cold", "affinity": -2}
+      ]
+    },
+    "friendly": {
+      "text": "If you ever need anything, my door is always open. I bake cookies on weekends!",
+      "choices": [
+        {"text": "I'd love some cookies sometime.", "next": "cookies", "affinity": 3},
+        {"text": "Maybe we could hang out?", "next": "hangout", "affinity": 5, "req_affinity": 5},
+        {"text": "Good to know. See you around.", "next": "end", "affinity": 1}
+      ]
+    },
+    "flirt": {
+      "text": "Hehe, you're smooth. I like that. Maybe we should get to know each other better?",
+      "choices": [
+        {"text": "I'd like that. A lot.", "next": "hangout", "affinity": 8},
+        {"text": "Let's start with coffee first.", "next": "coffee", "affinity": 5},
+        {"text": "Just being friendly, that's all.", "next": "friendly", "affinity": 0}
+      ]
+    },
+    "cold": {
+      "text": "Oh... okay. Well, the offer stands if you change your mind.",
+      "choices": [
+        {"text": "Sorry, I'm just stressed. Friends?", "next": "friendly", "affinity": 2},
+        {"text": "Whatever. Bye.", "next": "end", "affinity": -3}
+      ]
+    },
+    "cookies": {
+      "text": "It's a date! Come by Saturday afternoon. I'll make extra.",
+      "choices": [
+        {"text": "Looking forward to it.", "next": "end", "affinity": 3, "flag": "maya_cookies_invite"},
+        {"text": "Can I bring anything?", "next": "end", "affinity": 4, "flag": "maya_cookies_invite"}
+      ]
+    },
+    "hangout": {
+      "text": "I'd really like that. How about my place tonight? I have wine...",
+      "choices": [
+        {"text": "Sounds perfect. I'll be there.", "next": "intimate_offer", "affinity": 10, "req_affinity": 10},
+        {"text": "Maybe another time. I'm busy tonight.", "next": "end", "affinity": 2},
+        {"text": "Wine and... what else?", "next": "tease", "affinity": 8, "req_affinity": 15}
+      ]
+    },
+    "coffee": {
+      "text": "Coffee it is. There's a cafe downstairs. Tomorrow morning?",
+      "choices": [
+        {"text": "Perfect. See you then.", "next": "end", "affinity": 3, "flag": "maya_coffee_date"},
+        {"text": "Actually, let's skip to the wine.", "next": "hangout", "affinity": 5, "req_affinity": 10}
+      ]
+    },
+    "tease": {
+      "text": "Hehe, you're bold. Let's just say... I'm open to whatever feels right.",
+      "choices": [
+        {"text": "Then let's find out what feels right. (Start intimate scene)", "next": "end", "affinity": 15, "sex_scene": true, "pose": "missionary", "flag": "maya_first_intimate", "req_affinity": 20},
+        {"text": "I like the sound of that. Tomorrow?", "next": "end", "affinity": 5}
+      ]
+    },
+    "intimate_offer": {
+      "text": "I've been wanting to get closer to you. Come in... let's see where this goes.",
+      "choices": [
+        {"text": "(Enter her apartment)", "next": "end", "affinity": 10, "sex_scene": true, "pose": "missionary", "flag": "maya_first_intimate", "req_affinity": 15},
+        {"text": "I should go. Another time.", "next": "end", "affinity": -5}
+      ]
+    },
+    "end": {
+      "text": "See you around!",
+      "choices": []
+    }
+  }
+}

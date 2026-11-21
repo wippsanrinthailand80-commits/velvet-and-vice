@@ -1,0 +1,1 @@
+{"id": "family_ties", "title": "Family Ties", "description": "Build affinity with both family members.", "condition": {"affinity_min": {"sister": 20, "mother": 20}}}

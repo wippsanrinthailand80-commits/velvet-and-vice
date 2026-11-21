@@ -1,0 +1,413 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://scenes/world/bedroom.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/ui_hud.gd" type="Script" id=3]
+[ext_resource path="res://scripts/sex_ui.gd" type="Script" id=4]
+[ext_resource path="res://scripts/world_controller.gd" type="Script" id=5]
+[ext_resource path="res://scripts/inventory_ui.gd" type="Script" id=6]
+[ext_resource path="res://scripts/dialogue_ui.gd" type="Script" id=7]
+[ext_resource path="res://scripts/quest_ui.gd" type="Script" id=8]
+[ext_resource path="res://scripts/time_ui.gd" type="Script" id=9]
+[ext_resource path="res://scripts/corruption_ui.gd" type="Script" id=10]
+[ext_resource path="res://scripts/ending_ui.gd" type="Script" id=11]
+[ext_resource path="res://scripts/achievements_ui.gd" type="Script" id=12]
+[ext_resource path="res://scripts/journal_ui.gd" type="Script" id=13]
+[ext_resource path="res://scripts/event_ui.gd" type="Script" id=14]
+[ext_resource path="res://scripts/settings_menu.gd" type="Script" id=15]
+[ext_resource path="res://scripts/hint_ui.gd" type="Script" id=16]
+[ext_resource path="res://scripts/crafting_ui.gd" type="Script" id=17]
+
+[node name="Main" type="Spatial"]
+
+[node name="World" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HUDControl" type="Control" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="InventoryUI" type="Control" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+
+[node name="ListLabel" type="Label" parent="HUD/InventoryUI"]
+anchor_left = 0.02
+anchor_top = 0.02
+anchor_right = 0.3
+anchor_bottom = 0.5
+text = "Inventory:"
+
+[node name="QuestUI" type="Control" parent="HUD"]
+anchor_left = 0.7
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.4
+script = ExtResource( 8 )
+
+[node name="QuestLabel" type="Label" parent="HUD/QuestUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Quests:"
+
+[node name="TimeUI" type="Control" parent="HUD"]
+anchor_left = 0.4
+anchor_top = 0.02
+anchor_right = 0.6
+anchor_bottom = 0.08
+script = ExtResource( 9 )
+
+[node name="TimeLabel" type="Label" parent="HUD/TimeUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "08:00  Day 1"
+align = 1
+
+[node name="CorruptionUI" type="Control" parent="HUD"]
+anchor_left = 0.02
+anchor_top = 0.92
+anchor_right = 0.4
+anchor_bottom = 0.98
+script = ExtResource( 10 )
+
+[node name="CorruptionLabel" type="Label" parent="HUD/CorruptionUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Corruption: 0% (innocent)"
+
+[node name="AchievementsUI" type="Control" parent="HUD"]
+anchor_left = 0.4
+anchor_top = 0.92
+anchor_right = 0.7
+anchor_bottom = 0.98
+script = ExtResource( 12 )
+
+[node name="AchLabel" type="Label" parent="HUD/AchievementsUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Achievements: 0/6"
+
+[node name="JournalLayer" type="CanvasLayer" parent="."]
+
+[node name="JournalPanel" type="Control" parent="JournalLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 13 )
+visible = false
+
+[node name="TitleLabel" type="Label" parent="JournalLayer/JournalPanel"]
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.4
+anchor_bottom = 0.1
+text = "Journal"
+
+[node name="TextLabel" type="Label" parent="JournalLayer/JournalPanel"]
+anchor_left = 0.05
+anchor_top = 0.12
+anchor_right = 0.4
+anchor_bottom = 0.9
+text = ""
+autowrap = true
+
+[node name="EntryList" type="VBoxContainer" parent="JournalLayer/JournalPanel"]
+anchor_left = 0.45
+anchor_top = 0.1
+anchor_right = 0.95
+anchor_bottom = 0.9
+
+[node name="EventLayer" type="CanvasLayer" parent="."]
+
+[node name="EventPanel" type="Control" parent="EventLayer"]
+anchor_left = 0.3
+anchor_top = 0.15
+anchor_right = 0.7
+anchor_bottom = 0.35
+script = ExtResource( 14 )
+visible = false
+
+[node name="TitleLabel" type="Label" parent="EventLayer/EventPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.4
+text = "Event"
+align = 1
+
+[node name="TextLabel" type="Label" parent="EventLayer/EventPanel"]
+anchor_top = 0.4
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = ""
+align = 1
+autowrap = true
+
+[node name="SettingsLayer" type="CanvasLayer" parent="."]
+
+[node name="SettingsPanel" type="Control" parent="SettingsLayer"]
+anchor_left = 0.3
+anchor_top = 0.2
+anchor_right = 0.7
+anchor_bottom = 0.8
+script = ExtResource( 15 )
+visible = false
+
+[node name="VBox" type="VBoxContainer" parent="SettingsLayer/SettingsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="SettingsLayer/SettingsPanel/VBox"]
+text = "Settings"
+align = 1
+
+[node name="VolumeLabel" type="Label" parent="SettingsLayer/SettingsPanel/VBox"]
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsLayer/SettingsPanel/VBox"]
+min_value = 0.0
+max_value = 100.0
+value = 100.0
+
+[node name="SensLabel" type="Label" parent="SettingsLayer/SettingsPanel/VBox"]
+text = "Mouse Sensitivity"
+
+[node name="SensitivitySlider" type="HSlider" parent="SettingsLayer/SettingsPanel/VBox"]
+min_value = 1.0
+max_value = 10.0
+value = 3.0
+
+[node name="CloseButton" type="Button" parent="SettingsLayer/SettingsPanel/VBox"]
+text = "Close"
+
+[node name="HintLayer" type="CanvasLayer" parent="."]
+
+[node name="HintPanel" type="Control" parent="HintLayer"]
+anchor_left = 0.02
+anchor_top = 0.85
+anchor_right = 0.5
+anchor_bottom = 0.92
+script = ExtResource( 16 )
+
+[node name="HintLabel" type="Label" parent="HintLayer/HintPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "💡 Talk to Maya first."
+
+[node name="CraftingLayer" type="CanvasLayer" parent="."]
+
+[node name="CraftingPanel" type="Control" parent="CraftingLayer"]
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+script = ExtResource( 17 )
+visible = false
+
+[node name="RecipeList" type="VBoxContainer" parent="CraftingLayer/CraftingPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.7
+
+[node name="StatusLabel" type="Label" parent="CraftingLayer/CraftingPanel"]
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 0.85
+text = ""
+
+[node name="CraftButton" type="Button" parent="CraftingLayer/CraftingPanel"]
+anchor_top = 0.85
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Craft"
+
+[node name="EndingLayer" type="CanvasLayer" parent="."]
+
+[node name="Ending" type="Control" parent="EndingLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 11 )
+visible = false
+
+
+
+[node name="DialogueUI" type="CanvasLayer" parent="."]
+
+[node name="DialoguePanel" type="Control" parent="DialogueUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+
+[node name="TextLabel" type="Label" parent="DialogueUI/DialoguePanel"]
+anchor_left = 0.1
+anchor_top = 0.7
+anchor_right = 0.9
+anchor_bottom = 0.85
+text = ""
+align = 1
+autowrap = true
+
+[node name="SettingsLayer" type="CanvasLayer" parent="."]
+
+[node name="SettingsPanel" type="Control" parent="SettingsLayer"]
+anchor_left = 0.3
+anchor_top = 0.2
+anchor_right = 0.7
+anchor_bottom = 0.8
+script = ExtResource( 15 )
+visible = false
+
+[node name="VBox" type="VBoxContainer" parent="SettingsLayer/SettingsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="SettingsLayer/SettingsPanel/VBox"]
+text = "Settings"
+align = 1
+
+[node name="VolumeLabel" type="Label" parent="SettingsLayer/SettingsPanel/VBox"]
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsLayer/SettingsPanel/VBox"]
+min_value = 0.0
+max_value = 100.0
+value = 100.0
+
+[node name="SensLabel" type="Label" parent="SettingsLayer/SettingsPanel/VBox"]
+text = "Mouse Sensitivity"
+
+[node name="SensitivitySlider" type="HSlider" parent="SettingsLayer/SettingsPanel/VBox"]
+min_value = 1.0
+max_value = 10.0
+value = 3.0
+
+[node name="CloseButton" type="Button" parent="SettingsLayer/SettingsPanel/VBox"]
+text = "Close"
+
+[node name="HintLayer" type="CanvasLayer" parent="."]
+
+[node name="HintPanel" type="Control" parent="HintLayer"]
+anchor_left = 0.02
+anchor_top = 0.85
+anchor_right = 0.5
+anchor_bottom = 0.92
+script = ExtResource( 16 )
+
+[node name="HintLabel" type="Label" parent="HintLayer/HintPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "💡 Talk to Maya first."
+
+[node name="CraftingLayer" type="CanvasLayer" parent="."]
+
+[node name="CraftingPanel" type="Control" parent="CraftingLayer"]
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+script = ExtResource( 17 )
+visible = false
+
+[node name="RecipeList" type="VBoxContainer" parent="CraftingLayer/CraftingPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.7
+
+[node name="StatusLabel" type="Label" parent="CraftingLayer/CraftingPanel"]
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 0.85
+text = ""
+
+[node name="CraftButton" type="Button" parent="CraftingLayer/CraftingPanel"]
+anchor_top = 0.85
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Craft"
+
+[node name="Choices" type="VBoxContainer" parent="DialogueUI/DialoguePanel"]
+anchor_left = 0.3
+anchor_top = 0.86
+anchor_right = 0.7
+anchor_bottom = 0.98
+
+[node name="Crosshair" type="Label" parent="HUD/HUDControl"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -5.0
+margin_top = -10.0
+margin_right = 5.0
+margin_bottom = 10.0
+text = "+"
+align = 1
+
+[node name="InteractPrompt" type="Label" parent="HUD/HUDControl"]
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.7
+margin_left = -100.0
+margin_top = 0.0
+margin_right = 100.0
+margin_bottom = 20.0
+text = ""
+align = 1
+visible = false
+
+[node name="StatusLabel" type="Label" parent="HUD/HUDControl"]
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+margin_left = -150.0
+margin_top = 0.0
+margin_right = 150.0
+margin_bottom = 20.0
+text = ""
+align = 1
+visible = false
+
+[node name="SexUI" type="CanvasLayer" parent="."]
+
+[node name="SexPanel" type="Control" parent="SexUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="ArousalLabel" type="Label" parent="SexUI/SexPanel"]
+anchor_left = 0.02
+anchor_top = 0.02
+anchor_right = 0.2
+anchor_bottom = 0.2
+text = ""
+
+[node name="PoseButtons" type="HBoxContainer" parent="SexUI/SexPanel"]
+anchor_left = 0.5
+anchor_top = 0.85
+anchor_right = 0.5
+anchor_bottom = 0.85
+margin_left = -200.0
+margin_top = 0.0
+margin_right = 200.0
+margin_bottom = 40.0
+
+[node name="InteractButtons" type="HBoxContainer" parent="SexUI/SexPanel"]
+anchor_left = 0.5
+anchor_top = 0.92
+anchor_right = 0.5
+anchor_bottom = 0.92
+margin_left = -200.0
+margin_top = 0.0
+margin_right = 200.0
+margin_bottom = 40.0
+
+[node name="EndButton" type="Button" parent="SexUI/SexPanel"]
+anchor_left = 0.9
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.08
+text = "End"

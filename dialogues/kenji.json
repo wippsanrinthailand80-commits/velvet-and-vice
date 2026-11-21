@@ -1,0 +1,93 @@
+{
+  "npc_id": "kenji",
+  "nodes": {
+    "start": {
+      "text": "You're the new tenant. Kenji. I keep to myself mostly. Don't mind me.",
+      "choices": [
+        {"text": "Nice to meet you, Kenji.", "next": "polite", "affinity": 2},
+        {"text": "You seem interesting. What do you do?", "next": "interest", "affinity": 3},
+        {"text": "Fair enough. See you around.", "next": "end", "affinity": 0}
+      ]
+    },
+    "polite": {
+      "text": "Likewise. Most people here are... loud. It's nice to meet someone quiet.",
+      "choices": [
+        {"text": "I like quiet too. Maybe we could talk sometime?", "next": "talk", "affinity": 4},
+        {"text": "Just being polite. That's all.", "next": "end", "affinity": 1}
+      ]
+    },
+    "interest": {
+      "text": "I study... human psychology. Behavior. What drives people. Their desires, their fears. It's fascinating.",
+      "choices": [
+        {"text": "That sounds intense. What kind of desires?", "next": "desires", "affinity": 5},
+        {"text": "Psychology, huh? Like a therapist?", "next": "therapist", "affinity": 3}
+      ]
+    },
+    "desires": {
+      "text": "The kind people hide. The kind that surface in the dark. This building... has a lot of darkness. And light, if you know where to look.",
+      "choices": [
+        {"text": "I think I want to see that light.", "next": "trust", "affinity": 8, "req_affinity": 5},
+        {"text": "Sounds dangerous.", "next": "danger", "affinity": 2}
+      ]
+    },
+    "therapist": {
+      "text": "Not exactly. I don't fix people. I help them understand themselves. Including their... kinks. Everyone has them.",
+      "choices": [
+        {"text": "Everyone? Even me?", "next": "trust", "affinity": 6},
+        {"text": "I don't have kinks.", "next": "denial", "affinity": -1}
+      ]
+    },
+    "trust": {
+      "text": "Even you. Especially you. You came to this building for a reason, even if you don't know it yet. I can help you discover it.",
+      "choices": [
+        {"text": "Help me how?", "next": "help", "affinity": 8, "req_affinity": 10},
+        {"text": "I'm not sure I'm ready.", "next": "end", "affinity": 2}
+      ]
+    },
+    "danger": {
+      "text": "Danger is just opportunity in disguise. But I won't force anything. The choice is always yours.",
+      "choices": [
+        {"text": "Maybe I'll take that risk.", "next": "trust", "affinity": 5},
+        {"text": "I'll pass for now.", "next": "end", "affinity": 0}
+      ]
+    },
+    "denial": {
+      "text": "Denial is the first stage. That's okay. We all start there. When you're ready to explore, come find me.",
+      "choices": [
+        {"text": "Maybe I will.", "next": "end", "affinity": 2},
+        {"text": "Don't hold your breath.", "next": "end", "affinity": -2}
+      ]
+    },
+    "talk": {
+      "text": "I'd like that. I don't get many visitors. Come by my place anytime. I have tea. And... other things.",
+      "choices": [
+        {"text": "I'll visit soon.", "next": "end", "affinity": 3, "flag": "kenji_visit_invite"},
+        {"text": "Other things?", "next": "other", "affinity": 5}
+      ]
+    },
+    "other": {
+      "text": "Rope. Candles. Restraints. Things that help people... let go. Of control. Of fear. Of shame.",
+      "choices": [
+        {"text": "That sounds intense. I'm intrigued.", "next": "help", "affinity": 8, "req_affinity": 10},
+        {"text": "That's not for me.", "next": "end", "affinity": -2}
+      ]
+    },
+    "help": {
+      "text": "I can teach you. Bondage, sensation, trust. But only if you truly want it. This isn't a game.",
+      "choices": [
+        {"text": "I want to learn. Teach me.", "next": "lesson", "affinity": 15, "req_affinity": 20, "corruption": 5},
+        {"text": "Let me think about it.", "next": "end", "affinity": 2}
+      ]
+    },
+    "lesson": {
+      "text": "Good. First lesson: trust. Close your eyes. Let me bind your wrists. And then... we'll see what your body tells you.",
+      "choices": [
+        {"text": "(Close eyes and submit)", "next": "end", "affinity": 20, "sex_scene": true, "pose": "spread_eagle", "flag": "kenji_first_lesson", "req_affinity": 25, "corruption": 15}
+      ]
+    },
+    "end": {
+      "text": "Take care.",
+      "choices": []
+    }
+  }
+}

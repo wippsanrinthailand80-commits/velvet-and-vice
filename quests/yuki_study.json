@@ -1,0 +1,14 @@
+{
+  "id": "yuki_study",
+  "title": "Study Break",
+  "description": "Yuki needs a break from studying. Spend time with her.",
+  "objectives": [
+    {"id": "visit", "text": "Visit Yuki's study room", "done": false},
+    {"id": "comfort", "text": "Comfort Yuki", "done": false}
+  ],
+  "reward": {
+    "affinity": {"yuki": 15},
+    "flag": "yuki_study_done",
+    "item": "tea"
+  }
+}

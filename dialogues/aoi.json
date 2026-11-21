@@ -1,0 +1,51 @@
+{
+  "npc_id": "aoi",
+  "nodes": {
+    "start": {
+      "text": "You found your way to my office. I'm Aoi. I own this building. And... other things. What do you want?",
+      "choices": [
+        {"text": "I've heard about the club. I want in.", "next": "club_inquiry", "affinity": 3, "req_flag": "riko_tour_invite"},
+        {"text": "Just exploring.", "next": "explore", "affinity": 1},
+        {"text": "Nothing. Wrong door.", "next": "end", "affinity": 0}
+      ]
+    },
+    "explore": {
+      "text": "Exploring is fine. But in this building, curiosity has a price. And a reward. Come back when you have a reason.",
+      "choices": [
+        {"text": "I'll find a reason.", "next": "end", "affinity": 2},
+        {"text": "What kind of price?", "next": "club_inquiry", "affinity": 3, "req_affinity": 10}
+      ]
+    },
+    "club_inquiry": {
+      "text": "The Pleasure Club. Members only. To join, you must prove yourself. Three trials. Each tests a different... appetite.",
+      "choices": [
+        {"text": "I'm ready. What's the first trial?", "next": "trial1", "affinity": 5},
+        {"text": "Three trials? That sounds intense.", "next": "hesitate", "affinity": 2}
+      ]
+    },
+    "hesitate": {
+      "text": "Intensity is the point. This isn't for the faint of heart. Or the closed-minded. Are you sure?",
+      "choices": [
+        {"text": "I'm sure. Let's begin.", "next": "trial1", "affinity": 5},
+        {"text": "Not yet. I need time.", "next": "end", "affinity": 0}
+      ]
+    },
+    "trial1": {
+      "text": "First trial: Surrender. You must let someone else take control completely. No safewords. No limits. Can you do that?",
+      "choices": [
+        {"text": "I can. I will.", "next": "trial1_accept", "affinity": 10, "req_affinity": 15},
+        {"text": "That's too far.", "next": "end", "affinity": -5}
+      ]
+    },
+    "trial1_accept": {
+      "text": "Good. Riko will handle your first trial. She's... thorough. Come back when you've passed.",
+      "choices": [
+        {"text": "I look forward to it.", "next": "end", "affinity": 5, "flag": "aoi_trial1_given", "quest": "trial_surrender"}
+      ]
+    },
+    "end": {
+      "text": "Remember: in this building, everything has a price. And everything has a pleasure.",
+      "choices": []
+    }
+  }
+}

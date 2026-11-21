@@ -1,0 +1,149 @@
+{
+  "npc_id": "mother",
+  "nodes": {
+    "start": {
+      "text": "You came to visit, sweetheart. I'm so happy. Come in, let me make you some tea.",
+      "choices": [
+        {"text": "Thanks, Mom. It's good to see you.", "next": "warm", "affinity": 3},
+        {"text": "I need to talk to you about something.", "next": "serious", "affinity": 1},
+        {"text": "Just passing by.", "next": "casual", "affinity": 1}
+      ]
+    },
+    "warm": {
+      "text": "You've grown so much. Sometimes I look at you and still see that little boy. But you're a man now. A handsome one.",
+      "choices": [
+        {"text": "Mom, you're embarrassing me.", "next": "tease", "affinity": 4},
+        {"text": "Thanks, Mom. You look great too.", "next": "compliment", "affinity": 5}
+      ]
+    },
+    "tease": {
+      "text": "A mother can't compliment her son? I remember when you used to crawl into my bed during thunderstorms.",
+      "choices": [
+        {"text": "That was a long time ago.", "next": "memory", "affinity": 3},
+        {"text": "I still remember those nights.", "next": "memory", "affinity": 6}
+      ]
+    },
+    "compliment": {
+      "text": "Oh, you charmer. You get that from your father. Well... some of it.",
+      "choices": [
+        {"text": "What do you mean?", "next": "father", "affinity": 3},
+        {"text": "I'll take that as a compliment.", "next": "warm2", "affinity": 4}
+      ]
+    },
+    "father": {
+      "text": "Your father was... complicated. He left when you were young. I had to raise you alone. It made me strong. And lonely.",
+      "choices": [
+        {"text": "I'm sorry, Mom. You did great.", "next": "warm2", "affinity": 6},
+        {"text": "Do you still miss him?", "next": "lonely", "affinity": 4}
+      ]
+    },
+    "lonely": {
+      "text": "Sometimes. But I've learned to find comfort in other ways. This house is big. And quiet. Too quiet.",
+      "choices": [
+        {"text": "I could visit more often.", "next": "offer", "affinity": 5},
+        {"text": "Have you thought about dating?", "next": "dating", "affinity": 3}
+      ]
+    },
+    "offer": {
+      "text": "I'd like that. You're always welcome here. Day or night.",
+      "choices": [
+        {"text": "I'll come by more. I promise.", "next": "end", "affinity": 5, "flag": "mom_visit_promise"},
+        {"text": "Maybe I could stay over sometime.", "next": "stay", "affinity": 8, "req_affinity": 15}
+      ]
+    },
+    "dating": {
+      "text": "Dating at my age? The men my age are boring. Younger men... now they're interesting. But that would be inappropriate.",
+      "choices": [
+        {"text": "Why inappropriate?", "next": "inappropriate", "affinity": 6, "req_affinity": 10},
+        {"text": "You're right. Forget I asked.", "next": "end", "affinity": 1}
+      ]
+    },
+    "inappropriate": {
+      "text": "Because... the only younger man I find interesting is my own son. And that's a line I shouldn't cross.",
+      "choices": [
+        {"text": "Mom... are you saying what I think you're saying?", "next": "confession", "affinity": 10, "req_affinity": 20},
+        {"text": "That IS inappropriate. Let's not go there.", "next": "shut_down", "affinity": -5}
+      ]
+    },
+    "confession": {
+      "text": "I'm saying I've thought about it. More than I should. You're a grown man. And I'm... lonely. And you're beautiful.",
+      "choices": [
+        {"text": "Mom, that's... I don't know what to say.", "next": "uncertain", "affinity": 8},
+        {"text": "I've thought about it too.", "next": "mutual", "affinity": 15, "req_affinity": 25},
+        {"text": "This is wrong. We can't.", "next": "shut_down", "affinity": -8}
+      ]
+    },
+    "uncertain": {
+      "text": "You don't have to say anything. I just needed to tell someone. Even if it's you.",
+      "choices": [
+        {"text": "I'm glad you told me. Let's take it slow.", "next": "slow", "affinity": 8},
+        {"text": "I need time to think.", "next": "end", "affinity": 2}
+      ]
+    },
+    "mutual": {
+      "text": "You have? Oh... oh my. Come here. Let me look at you properly.",
+      "choices": [
+        {"text": "(Step closer)", "next": "intimate", "affinity": 20, "req_affinity": 30},
+        {"text": "Wait. Let's talk first.", "next": "slow", "affinity": 8}
+      ]
+    },
+    "intimate": {
+      "text": "You're so handsome. Just like I imagined. Let me... take care of you. The way I should have all those years.",
+      "choices": [
+        {"text": "(Let her)", "next": "end", "affinity": 25, "sex_scene": true, "pose": "missionary", "flag": "mom_first_intimate", "req_affinity": 35, "corruption": 20}
+      ]
+    },
+    "slow": {
+      "text": "Of course. Take your time. I'll be here. I've waited this long.",
+      "choices": [
+        {"text": "Thank you, Mom. For understanding.", "next": "end", "affinity": 6, "flag": "mom_slow_path"}
+      ]
+    },
+    "shut_down": {
+      "text": "You're right. I'm sorry. I shouldn't have said anything. Please forget it.",
+      "choices": [
+        {"text": "I won't tell anyone. And I'm not disgusted.", "next": "end", "affinity": 4},
+        {"text": "Okay. Forgotten.", "next": "end", "affinity": -3}
+      ]
+    },
+    "memory": {
+      "text": "Those were special nights. Just you and me. Safe and warm. I miss that simplicity.",
+      "choices": [
+        {"text": "We can still have that. I'm here now.", "next": "warm2", "affinity": 6},
+        {"text": "Times change, Mom.", "next": "end", "affinity": 1}
+      ]
+    },
+    "warm2": {
+      "text": "You always know what to say. Come, sit with me. Tell me about your life. I want to know everything.",
+      "choices": [
+        {"text": "(Sit and talk)", "next": "end", "affinity": 5},
+        {"text": "Actually, Mom, there's something else.", "next": "serious", "affinity": 2}
+      ]
+    },
+    "serious": {
+      "text": "What is it, sweetheart? You can tell me anything.",
+      "choices": [
+        {"text": "I've been feeling... lonely too.", "next": "lonely", "affinity": 5},
+        {"text": "Never mind. It's nothing.", "next": "end", "affinity": 1}
+      ]
+    },
+    "casual": {
+      "text": "Well, I'm glad you stopped by. Even if just passing. The door is always open.",
+      "choices": [
+        {"text": "Thanks, Mom. I'll visit more.", "next": "end", "affinity": 3, "flag": "mom_visit_promise"},
+        {"text": "Maybe I'll stay for a while.", "next": "warm", "affinity": 4}
+      ]
+    },
+    "stay": {
+      "text": "I'd love that. The guest room is always ready. Or... you could stay in my room. If you want.",
+      "choices": [
+        {"text": "The guest room is fine.", "next": "end", "affinity": 3},
+        {"text": "Your room? ...Sure.", "next": "intimate", "affinity": 12, "req_affinity": 20, "corruption": 5}
+      ]
+    },
+    "end": {
+      "text": "I love you, sweetheart. Always.",
+      "choices": []
+    }
+  }
+}

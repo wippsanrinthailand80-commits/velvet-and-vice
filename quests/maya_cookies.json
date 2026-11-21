@@ -1,0 +1,14 @@
+{
+  "id": "maya_cookies",
+  "title": "Maya's Cookies",
+  "description": "Maya invited you for cookies. Visit her on Saturday afternoon.",
+  "objectives": [
+    {"id": "visit", "text": "Visit Maya's apartment", "done": false},
+    {"id": "eat", "text": "Share cookies with Maya", "done": false}
+  ],
+  "reward": {
+    "affinity": {"maya": 15},
+    "flag": "maya_cookies_done",
+    "item": "cookie"
+  }
+}

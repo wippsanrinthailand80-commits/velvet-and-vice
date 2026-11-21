@@ -1,0 +1,14 @@
+{
+  "id": "aoi_trial2",
+  "title": "Trial of Desire",
+  "description": "Aoi's second trial. Prove your desire.",
+  "objectives": [
+    {"id": "talk_aoi", "text": "Speak with Aoi about the second trial", "done": false},
+    {"id": "complete", "text": "Complete the desire trial", "done": false}
+  ],
+  "reward": {
+    "affinity": {"aoi": 20},
+    "flag": "trial2_complete",
+    "corruption": 15
+  }
+}

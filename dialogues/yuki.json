@@ -1,0 +1,81 @@
+{
+  "npc_id": "yuki",
+  "nodes": {
+    "start": {
+      "text": "Oh, um, hi. Sorry, I didn't see you there. I'm Yuki. I'm just... studying.",
+      "choices": [
+        {"text": "Hey. No need to apologize. What are you studying?", "next": "study", "affinity": 3},
+        {"text": "You seem nervous. Everything okay?", "next": "nervous", "affinity": 4},
+        {"text": "Sorry to bother you.", "next": "end", "affinity": 1}
+      ]
+    },
+    "study": {
+      "text": "Medicine. Second year. It's a lot of work. I barely have time for... anything else.",
+      "choices": [
+        {"text": "All work and no play. I could help you relax.", "next": "relax_offer", "affinity": 5},
+        {"text": "Medicine is tough. Respect.", "next": "respect", "affinity": 3}
+      ]
+    },
+    "nervous": {
+      "text": "I'm fine, really. It's just... this building. People here are so... open. It's overwhelming sometimes.",
+      "choices": [
+        {"text": "Open how?", "next": "open", "affinity": 4},
+        {"text": "I get it. It can be a lot.", "next": "comfort", "affinity": 5}
+      ]
+    },
+    "open": {
+      "text": "They talk about... things. Intimate things. Like it's normal. I've never... I'm still a virgin. Is that weird?",
+      "choices": [
+        {"text": "Not weird at all. Everyone has their own pace.", "next": "comfort", "affinity": 6},
+        {"text": "Nothing wrong with that. But maybe you're curious?", "next": "curious", "affinity": 5},
+        {"text": "You should explore. Life's short.", "next": "push", "affinity": 2}
+      ]
+    },
+    "comfort": {
+      "text": "Thanks. That means a lot. Most people here would pressure me. You're different.",
+      "choices": [
+        {"text": "I'd never pressure you. But I'm here if you want to talk.", "next": "trust", "affinity": 8},
+        {"text": "Maybe I could show you things. At your pace.", "next": "trust", "affinity": 6, "req_affinity": 10}
+      ]
+    },
+    "curious": {
+      "text": "Curious? Maybe. A little. I read about things in my textbooks but... experiencing them is different.",
+      "choices": [
+        {"text": "When you're ready, I could help with that. No pressure.", "next": "trust", "affinity": 8},
+        {"text": "Let's start small. Coffee?", "next": "end", "affinity": 4, "flag": "yuki_coffee_invite"}
+      ]
+    },
+    "push": {
+      "text": "I... I guess you're right. But I need to feel safe first. Can you help with that?",
+      "choices": [
+        {"text": "Of course. I'll be patient.", "next": "trust", "affinity": 6},
+        {"text": "Safety is boring. Live a little.", "next": "end", "affinity": -5}
+      ]
+    },
+    "respect": {
+      "text": "Thanks. It's nice to be taken seriously for once. Most people here only see me as... naive.",
+      "choices": [
+        {"text": "You're not naive. Just innocent. There's a difference.", "next": "trust", "affinity": 8},
+        {"text": "Naive isn't bad. It means you have room to grow.", "next": "trust", "affinity": 6}
+      ]
+    },
+    "relax_offer": {
+      "text": "I... I don't know. I've never really... relaxed like that. With someone.",
+      "choices": [
+        {"text": "We can start slow. Just talking. Then see.", "next": "trust", "affinity": 7},
+        {"text": "I'll be gentle. Promise.", "next": "trust", "affinity": 5, "req_affinity": 8}
+      ]
+    },
+    "trust": {
+      "text": "You know... I trust you. More than I should, probably. What do you want to do?",
+      "choices": [
+        {"text": "Let's just talk for now. I like getting to know you.", "next": "end", "affinity": 5, "flag": "yuki_trust"},
+        {"text": "I want to show you what you've been missing. Gently.", "next": "end", "affinity": 15, "sex_scene": true, "pose": "missionary", "flag": "yuki_first_time", "req_affinity": 20, "corruption": 5}
+      ]
+    },
+    "end": {
+      "text": "See you later. And... thanks for being kind.",
+      "choices": []
+    }
+  }
+}

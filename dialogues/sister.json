@@ -1,0 +1,109 @@
+{
+  "npc_id": "sister",
+  "nodes": {
+    "start": {
+      "text": "Onii-chan! You're finally home. I missed you so much!",
+      "choices": [
+        {"text": "Hey, Yui. I missed you too.", "next": "warm", "affinity": 5},
+        {"text": "I'm tired. Maybe later.", "next": "cold", "affinity": -2},
+        {"text": "You're always so clingy.", "next": "tease", "affinity": 2}
+      ]
+    },
+    "warm": {
+      "text": "Hehe! I made dinner. Well, I tried. It's a bit burnt, but I tried!",
+      "choices": [
+        {"text": "I'm sure it's great. Let's eat together.", "next": "dinner", "affinity": 5},
+        {"text": "You don't have to cook for me, Yui.", "next": "independent", "affinity": 3}
+      ]
+    },
+    "cold": {
+      "text": "Oh... okay. I'll leave you alone then. Sorry for bothering you.",
+      "choices": [
+        {"text": "Wait, I didn't mean it. Come here.", "next": "warm", "affinity": 3},
+        {"text": "Thanks.", "next": "end", "affinity": -3}
+      ]
+    },
+    "tease": {
+      "text": "Clingy? I'm not clingy! I just... love my big brother. Is that so wrong?",
+      "choices": [
+        {"text": "No, it's not wrong. I love you too, Yui.", "next": "warm", "affinity": 6},
+        {"text": "It's a bit much sometimes.", "next": "cold", "affinity": -2}
+      ]
+    },
+    "dinner": {
+      "text": "Yay! Okay, sit down. I'll bring it. ...You know, I really like living with you. It feels like... home.",
+      "choices": [
+        {"text": "It is home, Yui. Always.", "next": "close", "affinity": 8},
+        {"text": "Me too. You're the best sister.", "next": "close", "affinity": 6}
+      ]
+    },
+    "independent": {
+      "text": "But I want to! Taking care of you is... it's what makes me happy. Is that weird?",
+      "choices": [
+        {"text": "It's not weird. It's sweet.", "next": "close", "affinity": 7},
+        {"text": "A little, but I appreciate it.", "next": "close", "affinity": 4}
+      ]
+    },
+    "close": {
+      "text": "Onii-chan... can I ask you something? It's kind of embarrassing...",
+      "choices": [
+        {"text": "Of course. You can tell me anything.", "next": "confession", "affinity": 10, "req_affinity": 15},
+        {"text": "Sure, what is it?", "next": "confession", "affinity": 5}
+      ]
+    },
+    "confession": {
+      "text": "Lately... I've been having these dreams. About you. They're not... sisterly dreams. I don't know what to do.",
+      "choices": [
+        {"text": "Dreams are just dreams, Yui. Don't worry about it.", "next": "reassure", "affinity": 5},
+        {"text": "What kind of dreams?", "next": "curious", "affinity": 8, "req_affinity": 20},
+        {"text": "That's... not appropriate, Yui.", "next": "shame", "affinity": -5}
+      ]
+    },
+    "reassure": {
+      "text": "You're right. I'm sorry. I shouldn't have said anything. Forget it.",
+      "choices": [
+        {"text": "I didn't say it's wrong. Just... let's talk about it.", "next": "curious", "affinity": 8, "req_affinity": 20},
+        {"text": "Okay. Forgotten. (She looks disappointed)", "next": "end", "affinity": -3}
+      ]
+    },
+    "curious": {
+      "text": "I... I dream about you touching me. Holding me. Like a... lover. It scares me. But it also feels... right?",
+      "choices": [
+        {"text": "Yui, that's not right. You're my sister.", "next": "shame", "affinity": -5},
+        {"text": "Feelings are feelings. They don't have to make sense.", "next": "accept", "affinity": 10, "req_affinity": 25},
+        {"text": "Do you want me to make those dreams real?", "next": "tempt", "affinity": 15, "req_affinity": 30, "corruption": 10}
+      ]
+    },
+    "shame": {
+      "text": "You're right. I'm sorry. I'm so sorry. I don't know what's wrong with me...",
+      "choices": [
+        {"text": "Nothing is wrong with you. I'm just surprised.", "next": "comfort", "affinity": 6},
+        {"text": "We should forget this happened.", "next": "end", "affinity": -3}
+      ]
+    },
+    "comfort": {
+      "text": "Really? You're not... disgusted?",
+      "choices": [
+        {"text": "Never. You're my little sister. I love you.", "next": "accept", "affinity": 10, "req_affinity": 20},
+        {"text": "Let's just take it slow.", "next": "end", "affinity": 5, "flag": "yui_slow_path"}
+      ]
+    },
+    "accept": {
+      "text": "Onii-chan... I'm so relieved. I've been so scared to tell you. Can we... try? Just once?",
+      "choices": [
+        {"text": "Yes. Come here.", "next": "end", "affinity": 20, "sex_scene": true, "pose": "missionary", "flag": "yui_first_intimate", "req_affinity": 30, "corruption": 15},
+        {"text": "Not yet. But I won't push you away.", "next": "end", "affinity": 8, "flag": "yui_slow_path"}
+      ]
+    },
+    "tempt": {
+      "text": "You... you'd really do that? For me? I... yes. Yes, I want that. I want you.",
+      "choices": [
+        {"text": "(Take her hand)", "next": "end", "affinity": 25, "sex_scene": true, "pose": "missionary", "flag": "yui_first_intimate", "req_affinity": 35, "corruption": 20}
+      ]
+    },
+    "end": {
+      "text": "I love you, Onii-chan.",
+      "choices": []
+    }
+  }
+}

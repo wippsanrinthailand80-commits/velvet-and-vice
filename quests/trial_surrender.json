@@ -1,0 +1,14 @@
+{
+  "id": "trial_surrender",
+  "title": "Trial of Surrender",
+  "description": "Prove you can surrender control completely. Riko will be your guide.",
+  "objectives": [
+    {"id": "talk_riko", "text": "Talk to Riko about the trial", "done": false},
+    {"id": "complete_scene", "text": "Complete the surrender scene", "done": false}
+  ],
+  "reward": {
+    "affinity": {"riko": 20, "aoi": 10},
+    "flag": "trial1_complete",
+    "corruption": 10
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "riko_tour",
+  "title": "The Full Tour",
+  "description": "Riko invited you to the basement. Meet her at 10 PM.",
+  "objectives": [
+    {"id": "meet", "text": "Meet Riko in the basement", "done": false},
+    {"id": "explore", "text": "Explore the club areas", "done": false}
+  ],
+  "reward": {
+    "affinity": {"riko": 15, "aoi": 5},
+    "flag": "riko_tour_done",
+    "corruption": 5
+  }
+}
