@@ -39,7 +39,7 @@ func _process(delta):
         _show_random_hint()
 
 func _show_random_hint():
-    if hints.empty():
+    if hints.is_empty():
         return
     var h = hints[randi() % hints.size()]
     current_hint = h

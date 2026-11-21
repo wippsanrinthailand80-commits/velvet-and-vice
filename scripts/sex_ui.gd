@@ -1,20 +1,20 @@
 # Sex Scene UI overlay
 extends Control
 
-onready var pose_container = get_node_or_null("PoseButtons")
-onready var arousal_label = get_node_or_null("ArousalLabel")
-onready var end_button = get_node_or_null("EndButton")
-onready var interact_buttons = get_node_or_null("InteractButtons")
+@onready var pose_container = get_node_or_null("PoseButtons")
+@onready var arousal_label = get_node_or_null("ArousalLabel")
+@onready var end_button = get_node_or_null("EndButton")
+@onready var interact_buttons = get_node_or_null("InteractButtons")
 
 var visible_panel: bool = false
 
 func _ready():
-    SexSceneManager.connect("scene_started", self, "_on_scene_started")
-    SexSceneManager.connect("scene_ended", self, "_on_scene_ended")
-    SexSceneManager.connect("pose_changed", self, "_on_pose_changed")
-    SexSceneManager.connect("arousal_changed", self, "_on_arousal_changed")
+    SexSceneManager.connect("scene_started", Callable(self, "_on_scene_started"))
+    SexSceneManager.connect("scene_ended", Callable(self, "_on_scene_ended"))
+    SexSceneManager.connect("pose_changed", Callable(self, "_on_pose_changed"))
+    SexSceneManager.connect("arousal_changed", Callable(self, "_on_arousal_changed"))
     if end_button:
-        end_button.connect("pressed", self, "_on_end_pressed")
+        end_button.connect("pressed", Callable(self, "_on_end_pressed"))
     visible = false
 
 func _on_scene_started(participants):

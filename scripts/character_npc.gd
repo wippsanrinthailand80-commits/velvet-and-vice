@@ -1,13 +1,13 @@
 # Character NPC
-extends Spatial
+extends Node3D
 
-export var npc_id: String = "npc_01"
-export var display_name: String = "Character"
-export var dialogue_file: String = ""
+@export var npc_id: String = "npc_01"
+@export var display_name: String = "Character"
+@export var dialogue_file: String = ""
 
 var affinity: int = 0
 var current_anim: String = "idle"
-var body: StaticBody = null
+var body: StaticBody3D = null
 
 signal dialogue_started(npc)
 signal dialogue_ended
@@ -18,7 +18,7 @@ func _ready():
     _add_collision()
 
 func _add_collision():
-    body = StaticBody.new()
+    body = StaticBody3D.new()
     body.name = "Body"
     add_child(body)
     var col = CollisionShape.new()

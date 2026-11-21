@@ -1,9 +1,9 @@
 # HUD - in-game overlay
 extends Control
 
-onready var interact_prompt = get_node_or_null("InteractPrompt")
-onready var crosshair = get_node_or_null("Crosshair")
-onready var status_label = get_node_or_null("StatusLabel")
+@onready var interact_prompt = get_node_or_null("InteractPrompt")
+@onready var crosshair = get_node_or_null("Crosshair")
+@onready var status_label = get_node_or_null("StatusLabel")
 
 var player: Node = null
 
@@ -23,5 +23,5 @@ func show_status(text: String, duration: float = 2.0):
     if status_label:
         status_label.text = text
         status_label.visible = true
-        yield(get_tree().create_timer(duration), "timeout")
+        await get_tree().create_timer(duration).timeout
         status_label.visible = false

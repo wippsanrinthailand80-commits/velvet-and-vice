@@ -1,7 +1,6 @@
-# Quest System
+# Quest System (Godot 4.7)
 extends Node
 
-# quest_id -> {title, description, objectives: [{id, text, done}], reward: {affinity, item, flag, corruption}, status}
 var quests: Dictionary = {}
 var active_quests: Array = []
 var completed_quests: Array = []
@@ -14,22 +13,22 @@ func _ready():
     _load_quests()
 
 func _load_quests():
-    var dir = Directory.new()
-    var path = "res://quests/"
-    if not dir.dir_exists(path):
-        dir.make_dir_recursive(path)
+    var dir = DirAccess.open("res://quests/")
+    if dir == null:
+        DirAccess.make_dir_recursive_absolute("res://quests/")
         return
-    dir.open(path)
     dir.list_dir_begin()
     var fn = dir.get_next()
     while fn != "":
         if fn.ends_with(".json"):
-            var f = File.new()
-            if f.open(path + fn, File.READ) == OK:
-                var data = parse_json(f.get_as_text())
+            var f = FileAccess.open("res://quests/" + fn, FileAccess.READ)
+            if f:
+                var json = JSON.new()
+                if json.parse(f.get_as_text()) == OK:
+                    var data = json.data
+                    if data and data.has("id"):
+                        quests[data["id"]] = data
                 f.close()
-                if data and data.has("id"):
-                    quests[data["id"]] = data
         fn = dir.get_next()
     dir.list_dir_end()
 
@@ -40,7 +39,7 @@ func start_quest(quest_id: String):
     if quest_id in active_quests or quest_id in completed_quests:
         return
     active_quests.append(quest_id)
-    emit_signal("quest_started", quest_id)
+    quest_started.emit(quest_id)
 
 func complete_objective(quest_id: String, obj_id: String):
     if not quests.has(quest_id):
@@ -49,7 +48,6 @@ func complete_objective(quest_id: String, obj_id: String):
     for o in q.get("objectives", []):
         if o["id"] == obj_id:
             o["done"] = true
-    # check all done
     var all_done = true
     for o in q.get("objectives", []):
         if not o.get("done", false):
@@ -58,7 +56,7 @@ func complete_objective(quest_id: String, obj_id: String):
     if all_done:
         _complete_quest(quest_id)
     else:
-        emit_signal("quest_updated", quest_id)
+        quest_updated.emit(quest_id)
 
 func _complete_quest(quest_id: String):
     if quest_id in completed_quests:
@@ -77,7 +75,7 @@ func _complete_quest(quest_id: String):
         GameManager.set_flag(reward["flag"])
     if reward.has("corruption"):
         CorruptionSystem.add(reward["corruption"])
-    emit_signal("quest_completed", quest_id)
+    quest_completed.emit(quest_id)
 
 func get_quest(quest_id: String) -> Dictionary:
     return quests.get(quest_id, {})

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource path="res://assets/models/environment/env_floor_wood_modular_a.glb" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/environment/env_wall_concrete_modular_a.glb" type="PackedScene" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://scripts/door.gd" type="Script" id=8]
 [ext_resource path="res://assets/models/environment/env_door_wood_01.glb" type="PackedScene" id=9]
 
-[node name="StudyYuki" type="Spatial"]
+[node name="StudyYuki" type="Node3D"]
 script = ExtResource( 7 )
 
 [node name="Floor" parent="." instance=ExtResource( 1 )]
@@ -45,6 +45,6 @@ script = ExtResource( 8 )
 target_scene = "res://scenes/world/hallway.tscn"
 label = "Hallway"
 
-[node name="Sun" type="DirectionalLight" parent="."]
+[node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform(0.707, -0.5, 0.5, 0, 0.707, 0.707, -0.707, -0.5, 0.5, 0, 5, 0)
 light_energy = 0.6

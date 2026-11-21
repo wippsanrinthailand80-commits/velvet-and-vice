@@ -18,7 +18,7 @@ func add_entry(title: String, text: String, category: String = "Story"):
         "title": title,
         "text": text,
         "category": category,
-        "timestamp": OS.get_datetime()
+        "timestamp": Time.get_datetime_dict_from_system()
     })
     emit_signal("entry_added", title, category)
 

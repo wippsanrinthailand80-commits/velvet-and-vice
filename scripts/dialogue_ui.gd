@@ -1,13 +1,13 @@
 # Dialogue UI
 extends Control
 
-onready var text_label = get_node_or_null("TextLabel")
-onready var choices_container = get_node_or_null("Choices")
+@onready var text_label = get_node_or_null("TextLabel")
+@onready var choices_container = get_node_or_null("Choices")
 
 func _ready():
-    DialogueSystem.connect("dialogue_started", self, "_on_started")
-    DialogueSystem.connect("dialogue_node_changed", self, "_on_node_changed")
-    DialogueSystem.connect("dialogue_ended", self, "_on_ended")
+    DialogueSystem.connect("dialogue_started", Callable(self, "_on_started"))
+    DialogueSystem.connect("dialogue_node_changed", Callable(self, "_on_node_changed"))
+    DialogueSystem.connect("dialogue_ended", Callable(self, "_on_ended"))
     visible = false
 
 func _on_started(npc_id):

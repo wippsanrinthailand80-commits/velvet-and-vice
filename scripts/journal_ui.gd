@@ -1,14 +1,14 @@
 # Journal UI
 extends Control
 
-onready var title_label = get_node_or_null("TitleLabel")
-onready var text_label = get_node_or_null("TextLabel")
-onready var list_container = get_node_or_null("EntryList")
+@onready var title_label = get_node_or_null("TitleLabel")
+@onready var text_label = get_node_or_null("TextLabel")
+@onready var list_container = get_node_or_null("EntryList")
 
 var current_index: int = 0
 
 func _ready():
-    JournalSystem.connect("entry_added", self, "_refresh")
+    JournalSystem.connect("entry_added", Callable(self, "_refresh"))
     visible = false
     _refresh()
 

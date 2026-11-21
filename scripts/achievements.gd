@@ -1,4 +1,4 @@
-# Achievements System
+# Achievements System (Godot 4.7)
 extends Node
 
 var achievements: Dictionary = {}
@@ -11,32 +11,32 @@ func _ready():
     var t = Timer.new()
     t.wait_time = 2.0
     t.autostart = true
-    t.connect("timeout", self, "_check_all")
+    t.timeout.connect(_check_all)
     add_child(t)
 
-func _check_all():
-    for id in achievements.keys():
-        check(id)
-
 func _load_achievements():
-    var dir = Directory.new()
-    var path = "res://achievements/"
-    if not dir.dir_exists(path):
-        dir.make_dir_recursive(path)
+    var dir = DirAccess.open("res://achievements/")
+    if dir == null:
+        DirAccess.make_dir_recursive_absolute("res://achievements/")
         return
-    dir.open(path)
     dir.list_dir_begin()
     var fn = dir.get_next()
     while fn != "":
         if fn.ends_with(".json"):
-            var f = File.new()
-            if f.open(path + fn, File.READ) == OK:
-                var data = parse_json(f.get_as_text())
+            var f = FileAccess.open("res://achievements/" + fn, FileAccess.READ)
+            if f:
+                var json = JSON.new()
+                if json.parse(f.get_as_text()) == OK:
+                    var data = json.data
+                    if data and data.has("id"):
+                        achievements[data["id"]] = data
                 f.close()
-                if data and data.has("id"):
-                    achievements[data["id"]] = data
         fn = dir.get_next()
     dir.list_dir_end()
+
+func _check_all():
+    for id in achievements.keys():
+        check(id)
 
 func check(achievement_id: String) -> bool:
     if not achievements.has(achievement_id):
@@ -44,7 +44,6 @@ func check(achievement_id: String) -> bool:
     if achievement_id in unlocked:
         return false
     var ach = achievements[achievement_id]
-    # Check conditions
     var cond = ach.get("condition", {})
     if cond.has("corruption_min"):
         if CorruptionSystem.corruption < cond["corruption_min"]:
@@ -67,7 +66,7 @@ func unlock(id: String):
         return
     unlocked.append(id)
     if achievements.has(id):
-        emit_signal("achievement_unlocked", id, achievements[id].get("title", id))
+        achievement_unlocked.emit(id, achievements[id].get("title", id))
 
 func is_unlocked(id: String) -> bool:
     return id in unlocked

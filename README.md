@@ -1,8 +1,10 @@
-# Velvet & Vice — 3D Hentai Sandbox (Godot 3.6)
+# Velvet & Vice — 3D Hentai Sandbox (Godot 4.7.2)
 
 > **"In Vice City Apartments, every door hides a desire."**
 
 A full-length 3D action/sandbox hentai game. Build relationships, explore corruption, unlock the Pleasure Club, and reach one of 5 endings.
+
+**Engine: Godot 4.7.2 (latest stable)** — GDScript 2.0, CharacterBody3D, PhysicsRayQueryParameters3D.
 
 ## 🎮 Game Name
 **Velvet & Vice**
@@ -58,8 +60,8 @@ hentai_game/
 ```
 
 ## 🚀 Running
-1. Open `project.godot` in Godot 3.6 → Play
-2. Or: `godot3 --path /root/hentai_game`
+1. Open `project.godot` in **Godot 4.7.2** → Play
+2. Or: `/path/to/Godot_v4.7.2-stable_linux.arm64 --path /root/hentai_game`
 3. Rebuild assets: `blender --background --python blender/build_kit.py`
 
 ## 🔧 Adding Content
@@ -72,8 +74,9 @@ hentai_game/
 ## 📝 Notes
 - Assets are primitive placeholders — refine in Blender
 - Animations (idle/walk) exported with glb
-- Audio is procedural (AudioStreamSample generated in code) — no import needed
+- Audio is procedural (AudioStreamWAV generated in code) — no import needed
 - Corruption/affinity gates defined in dialogue JSON
+- **Migrated to Godot 4.7.2** from 3.6 (branch `godot3.6-backup` keeps the old version)
 
 ---
 *Built with Godot 3.6 + Blender 4.3. No AI slop. Full effort.*

@@ -1,12 +1,12 @@
 # Quest UI tracker
 extends Control
 
-onready var label = get_node_or_null("QuestLabel")
+@onready var label = get_node_or_null("QuestLabel")
 
 func _ready():
-    QuestSystem.connect("quest_started", self, "_refresh")
-    QuestSystem.connect("quest_completed", self, "_refresh")
-    QuestSystem.connect("quest_updated", self, "_refresh")
+    QuestSystem.connect("quest_started", Callable(self, "_refresh"))
+    QuestSystem.connect("quest_completed", Callable(self, "_refresh"))
+    QuestSystem.connect("quest_updated", Callable(self, "_refresh"))
     visible = true
     _refresh()
 
@@ -20,6 +20,6 @@ func _refresh(_id = null):
         for o in q.get("objectives", []):
             var mark = "[x]" if o.get("done", false) else "[ ]"
             txt += "   " + mark + " " + o.get("text", "") + "\n"
-    if QuestSystem.active_quests.empty():
+    if QuestSystem.active_quests.is_empty():
         txt += "(none)"
     label.text = txt

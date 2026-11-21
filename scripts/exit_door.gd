@@ -1,15 +1,15 @@
 # Exit Door - triggers ending
-extends Spatial
+extends Node3D
 
-export var label: String = "Leave Building"
+@export var label: String = "Leave Building"
 
-var body: StaticBody = null
+var body: StaticBody3D = null
 
 func _ready():
     _add_collision()
 
 func _add_collision():
-    body = StaticBody.new()
+    body = StaticBody3D.new()
     add_child(body)
     var col = CollisionShape.new()
     var shape = BoxShape.new()

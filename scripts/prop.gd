@@ -1,19 +1,19 @@
 # Prop - interactable pickup/usable prop
-extends Spatial
+extends Node3D
 
-export var prop_id: String = ""
-export var pickupable: bool = true
-export var usable: bool = true
+@export var prop_id: String = ""
+@export var pickupable: bool = true
+@export var usable: bool = true
 
 var held: bool = false
-var body: StaticBody = null
+var body: StaticBody3D = null
 
 func _ready():
     add_to_group("props")
     _add_collision()
 
 func _add_collision():
-    body = StaticBody.new()
+    body = StaticBody3D.new()
     body.name = "Body"
     add_child(body)
     var col = CollisionShape.new()

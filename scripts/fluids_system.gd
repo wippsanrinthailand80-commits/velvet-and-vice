@@ -21,7 +21,7 @@ func reset():
     character_fluids.clear()
 
 func add_fluid(type: int, position: Vector3, amount: float = 1.0):
-    fluids.append({"type": type, "pos": position, "amount": amount, "time": OS.get_ticks_msec()})
+    fluids.append({"type": type, "pos": position, "amount": amount, "time": Time.get_ticks_msec()})
     emit_signal("fluid_added", type, position, amount)
 
 func add_character_fluid(actor_id: String, fluid: String, amount: int):

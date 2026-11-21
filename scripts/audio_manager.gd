@@ -1,21 +1,19 @@
-# AudioManager - procedural audio (no file imports needed)
+# AudioManager - procedural audio (Godot 4.7)
 extends Node
 
 var music_player: AudioStreamPlayer = null
 var sfx_players: Array = []
 const MAX_SFX = 8
 
-# Cached streams
-var _click_stream: AudioStreamSample = null
-var _pickup_stream: AudioStreamSample = null
-var _door_stream: AudioStreamSample = null
-var _footstep_stream: AudioStreamSample = null
-var _ambient_main_stream: AudioStreamSample = null
-var _ambient_intimate_stream: AudioStreamSample = null
+var _click_stream: AudioStreamWAV = null
+var _pickup_stream: AudioStreamWAV = null
+var _door_stream: AudioStreamWAV = null
+var _footstep_stream: AudioStreamWAV = null
+var _ambient_main_stream: AudioStreamWAV = null
+var _ambient_intimate_stream: AudioStreamWAV = null
 
 var current_music: String = ""
 var music_playing: bool = false
-var music_phase: float = 0.0
 
 func _ready():
     music_player = AudioStreamPlayer.new()
@@ -34,10 +32,10 @@ func _generate_all():
     _ambient_main_stream = _ambient_pad([220.0, 330.0, 440.0], 0.15)
     _ambient_intimate_stream = _ambient_pad([110.0, 165.0, 220.0], 0.12)
 
-func _tone(freq: float, dur: float, vol: float) -> AudioStreamSample:
+func _tone(freq: float, dur: float, vol: float) -> AudioStreamWAV:
     var sr = 22050
     var n = int(sr * dur)
-    var data = PoolByteArray()
+    var data = PackedByteArray()
     data.resize(n * 2)
     for i in range(n):
         var t = float(i) / sr
@@ -47,17 +45,17 @@ func _tone(freq: float, dur: float, vol: float) -> AudioStreamSample:
         var s = int(clamp(v * 32767.0, -32768, 32767))
         data[i*2] = s & 0xFF
         data[i*2+1] = (s >> 8) & 0xFF
-    var stream = AudioStreamSample.new()
+    var stream = AudioStreamWAV.new()
     stream.data = data
-    stream.format = AudioStreamSample.FORMAT_16_BITS
+    stream.format = AudioStreamWAV.FORMAT_16_BITS
     stream.mix_rate = sr
     stream.stereo = false
     return stream
 
-func _noise(dur: float, vol: float) -> AudioStreamSample:
+func _noise(dur: float, vol: float) -> AudioStreamWAV:
     var sr = 22050
     var n = int(sr * dur)
-    var data = PoolByteArray()
+    var data = PackedByteArray()
     data.resize(n * 2)
     for i in range(n):
         var env = 1.0 - (float(i) / n)
@@ -65,27 +63,25 @@ func _noise(dur: float, vol: float) -> AudioStreamSample:
         var s = int(clamp(v * 32767.0, -32768, 32767))
         data[i*2] = s & 0xFF
         data[i*2+1] = (s >> 8) & 0xFF
-    var stream = AudioStreamSample.new()
+    var stream = AudioStreamWAV.new()
     stream.data = data
-    stream.format = AudioStreamSample.FORMAT_16_BITS
+    stream.format = AudioStreamWAV.FORMAT_16_BITS
     stream.mix_rate = sr
     stream.stereo = false
     return stream
 
-func _ambient_pad(freqs: Array, vol: float) -> AudioStreamSample:
+func _ambient_pad(freqs: Array, vol: float) -> AudioStreamWAV:
     var sr = 22050
     var dur = 4.0
     var n = int(sr * dur)
-    var data = PoolByteArray()
+    var data = PackedByteArray()
     data.resize(n * 2)
     for i in range(n):
         var t = float(i) / sr
         var v = 0.0
         for f in freqs:
             v += sin(t * f * TAU) * vol / freqs.size()
-        # slow LFO
         v *= 0.7 + 0.3 * sin(t * 0.5 * TAU)
-        # fade loop
         var env = 1.0
         if i < sr * 0.5:
             env = float(i) / (sr * 0.5)
@@ -95,17 +91,17 @@ func _ambient_pad(freqs: Array, vol: float) -> AudioStreamSample:
         var s = int(clamp(v * 32767.0, -32768, 32767))
         data[i*2] = s & 0xFF
         data[i*2+1] = (s >> 8) & 0xFF
-    var stream = AudioStreamSample.new()
+    var stream = AudioStreamWAV.new()
     stream.data = data
-    stream.format = AudioStreamSample.FORMAT_16_BITS
+    stream.format = AudioStreamWAV.FORMAT_16_BITS
     stream.mix_rate = sr
     stream.stereo = false
-    stream.loop_mode = AudioStreamSample.LOOP_FORWARD
+    stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
     stream.loop_begin = int(sr * 0.5)
     stream.loop_end = n - int(sr * 0.5)
     return stream
 
-func play_music(stream: AudioStreamSample):
+func play_music(stream: AudioStreamWAV):
     if music_player.stream == stream and music_player.playing:
         return
     music_player.stream = stream
@@ -120,7 +116,7 @@ func play_music_path(path: String):
 func stop_music():
     music_player.stop()
 
-func play_sfx(stream: AudioStreamSample, volume_db: float = 0.0):
+func play_sfx(stream: AudioStreamWAV, volume_db: float = 0.0):
     for p in sfx_players:
         if not p.playing:
             p.stream = stream

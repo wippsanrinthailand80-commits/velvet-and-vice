@@ -1,15 +1,15 @@
 # World controller - handles sex scene positioning in the bedroom
-extends Spatial
+extends Node3D
 
-onready var bed = get_node_or_null("Bed")
-onready var female = get_node_or_null("Female")
-onready var male = get_node_or_null("Male")
+@onready var bed = get_node_or_null("Bed")
+@onready var female = get_node_or_null("Female")
+@onready var male = get_node_or_null("Male")
 
 func _ready():
     if SexSceneManager:
-        SexSceneManager.connect("scene_started", self, "_on_scene_started")
-        SexSceneManager.connect("scene_ended", self, "_on_scene_ended")
-        SexSceneManager.connect("pose_changed", self, "_on_pose_changed")
+        SexSceneManager.connect("scene_started", Callable(self, "_on_scene_started"))
+        SexSceneManager.connect("scene_ended", Callable(self, "_on_scene_ended"))
+        SexSceneManager.connect("pose_changed", Callable(self, "_on_pose_changed"))
     AudioManager.play_music_path("ambient_main")
 
 func _on_scene_started(participants):

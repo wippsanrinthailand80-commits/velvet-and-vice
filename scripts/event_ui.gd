@@ -1,14 +1,14 @@
 # Event UI - shows random event notifications
 extends Control
 
-onready var title_label = get_node_or_null("TitleLabel")
-onready var text_label = get_node_or_null("TextLabel")
+@onready var title_label = get_node_or_null("TitleLabel")
+@onready var text_label = get_node_or_null("TextLabel")
 
 var display_timer: float = 0.0
 var showing: bool = false
 
 func _ready():
-    EventSystem.connect("event_triggered", self, "_on_event")
+    EventSystem.connect("event_triggered", Callable(self, "_on_event"))
     visible = false
 
 func _on_event(event_id, event_data):

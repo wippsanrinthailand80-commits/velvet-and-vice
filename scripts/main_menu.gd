@@ -2,9 +2,9 @@
 extends Control
 
 func _ready():
-    $VBox/NewGame.connect("pressed", self, "_on_NewGame_pressed")
-    $VBox/LoadGame.connect("pressed", self, "_on_LoadGame_pressed")
-    $VBox/Quit.connect("pressed", self, "_on_Quit_pressed")
+    $VBox/NewGame.connect("pressed", Callable(self, "_on_NewGame_pressed"))
+    $VBox/LoadGame.connect("pressed", Callable(self, "_on_LoadGame_pressed"))
+    $VBox/Quit.connect("pressed", Callable(self, "_on_Quit_pressed"))
     AudioManager.play_music_path("ambient_main")
 
 func _on_NewGame_pressed():

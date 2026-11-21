@@ -1,16 +1,16 @@
 # Crafting UI
 extends Control
 
-onready var recipe_list = get_node_or_null("RecipeList")
-onready var craft_btn = get_node_or_null("CraftButton")
-onready var status_label = get_node_or_null("StatusLabel")
+@onready var recipe_list = get_node_or_null("RecipeList")
+@onready var craft_btn = get_node_or_null("CraftButton")
+@onready var status_label = get_node_or_null("StatusLabel")
 
 var selected_recipe: int = -1
 
 func _ready():
     visible = false
     if craft_btn:
-        craft_btn.connect("pressed", self, "_on_craft_pressed")
+        craft_btn.connect("pressed", Callable(self, "_on_craft_pressed"))
     _refresh()
 
 func _input(event):

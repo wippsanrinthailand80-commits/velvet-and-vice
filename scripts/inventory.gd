@@ -43,7 +43,7 @@ func add_item(item_id: String, count: int = 1):
 func remove_item(item_id: String) -> bool:
     var idx = items.find(item_id)
     if idx >= 0:
-        items.remove(idx)
+        items.remove_at(idx)
         emit_signal("inventory_changed")
         return true
     return false

@@ -1,10 +1,10 @@
 # Inventory UI
 extends Control
 
-onready var list_label = get_node_or_null("ListLabel")
+@onready var list_label = get_node_or_null("ListLabel")
 
 func _ready():
-    Inventory.connect("inventory_changed", self, "_refresh")
+    Inventory.connect("inventory_changed", Callable(self, "_refresh"))
     visible = false
     _refresh()
 
@@ -23,6 +23,6 @@ func _refresh():
     var txt = "Inventory:\n"
     for k in counts.keys():
         txt += k + " x" + str(counts[k]) + "\n"
-    if counts.empty():
+    if counts.is_empty():
         txt += "(empty)"
     list_label.text = txt

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource path="res://assets/models/environment/env_floor_wood_modular_a.glb" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/environment/env_wall_concrete_modular_a.glb" type="PackedScene" id=2]
@@ -19,7 +19,7 @@
 [ext_resource path="res://scripts/door.gd" type="Script" id=17]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=16]
 
-[node name="Bedroom" type="Spatial"]
+[node name="Bedroom" type="Node3D"]
 
 # Floor (2x2 tiles)
 [node name="Floor" parent="." instance=ExtResource( 1 )]
@@ -106,12 +106,12 @@ label = "Hallway"
 transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 # Lighting
-[node name="Sun" type="DirectionalLight" parent="."]
+[node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform(0.707, -0.5, 0.5, 0, 0.707, 0.707, -0.707, -0.5, 0.5, 0, 5, 0)
 light_energy = 0.6
 shadow_enabled = true
 
-[node name="LampLight" type="OmniLight" parent="."]
+[node name="LampLight" type="OmniLight3D" parent="."]
 transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.0, -1.5)
 light_energy = 0.8
 omni_range = 4.0

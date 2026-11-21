@@ -1,14 +1,12 @@
-# Player controller - KinematicBody (Godot 3.6)
-extends KinematicBody
+# Player controller - CharacterBody3D (Godot 4.7)
+extends CharacterBody3D
 
-export var move_speed: float = 5.0
-export var jump_force: float = 6.0
-export var gravity: float = 9.8
+@export var move_speed: float = 5.0
+@export var jump_force: float = 6.0
+@export var gravity: float = 9.8
 
-var velocity: Vector3 = Vector3.ZERO
-var footstep_timer: float = 0.0
-var camera_pivot: Spatial = null
-var camera: Camera = null
+var camera_pivot: Node3D = null
+var camera: Camera3D = null
 
 # Interaction
 var interact_target: Node = null
@@ -16,6 +14,7 @@ var interact_range: float = 2.0
 
 # State
 var is_in_sex_scene: bool = false
+var footstep_timer: float = 0.0
 
 func _ready():
     GameManager.player = self
@@ -31,15 +30,16 @@ func _input(event):
             if cam:
                 cam.rotate_x(-event.relative.y * GameManager.mouse_sensitivity)
                 cam.rotation.x = clamp(cam.rotation.x, -1.2, 1.2)
-    if event is InputEventKey and event.pressed and event.scancode == KEY_F5:
-        SaveSystem.save_game()
-    if event is InputEventKey and event.pressed and event.scancode == KEY_F9:
-        SaveSystem.load_game()
-    if event is InputEventKey and event.pressed and event.scancode == KEY_ESCAPE:
-        if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-            Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-        else:
-            Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+    if event is InputEventKey and event.pressed:
+        if event.keycode == KEY_ESCAPE:
+            if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+                Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+            else:
+                Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+        elif event.keycode == KEY_F5:
+            SaveSystem.save_game()
+        elif event.keycode == KEY_F9:
+            SaveSystem.load_game()
 
 func _physics_process(delta):
     if GameManager.state != GameManager.GameState.PLAYING:
@@ -62,7 +62,7 @@ func _physics_process(delta):
     velocity.z = input_vec.z * move_speed
     if Input.is_action_just_pressed("jump") and is_on_floor():
         velocity.y = jump_force
-    velocity = move_and_slide(velocity, Vector3.UP)
+    move_and_slide()
     # Footsteps
     if is_on_floor() and Vector2(velocity.x, velocity.z).length() > 0.5:
         footstep_timer -= delta
@@ -79,12 +79,14 @@ func _physics_process(delta):
 func _check_interact():
     if camera == null:
         return
-    var space = get_world().direct_space_state
-    var from = camera.global_transform.origin
+    var space = get_world_3d().direct_space_state
+    var from = camera.global_position
     var to = from - camera.global_transform.basis.z * interact_range
-    var result = space.intersect_ray(from, to, [self])
-    if result and result.collider:
-        interact_target = _find_interactable(result.collider)
+    var params = PhysicsRayQueryParameters3D.create(from, to)
+    params.exclude = [self]
+    var result = space.intersect_ray(params)
+    if result and result.has("collider"):
+        interact_target = _find_interactable(result["collider"])
     else:
         interact_target = null
 

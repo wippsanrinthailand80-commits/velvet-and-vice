@@ -43,7 +43,7 @@ func has_item(item_id: String) -> bool:
 func remove_item(item_id: String) -> bool:
     var idx = inventory_items.find(item_id)
     if idx >= 0:
-        inventory_items.remove(idx)
+        inventory_items.remove_at(idx)
         return true
     return false
 
