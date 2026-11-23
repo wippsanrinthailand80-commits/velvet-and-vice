@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource path="res://scenes/world/bedroom.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://scripts/settings_menu.gd" type="Script" id=15]
 [ext_resource path="res://scripts/hint_ui.gd" type="Script" id=16]
 [ext_resource path="res://scripts/crafting_ui.gd" type="Script" id=17]
+[ext_resource path="res://scripts/touch_controls.gd" type="Script" id=18]
 
 [node name="Main" type="Node3D"]
 
@@ -411,3 +412,7 @@ anchor_top = 0.02
 anchor_right = 0.98
 anchor_bottom = 0.08
 text = "End"
+[node name="TouchControls" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 18 )

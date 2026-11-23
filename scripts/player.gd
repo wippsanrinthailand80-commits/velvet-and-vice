@@ -15,6 +15,7 @@ var interact_range: float = 2.0
 # State
 var is_in_sex_scene: bool = false
 var footstep_timer: float = 0.0
+var touch_move: Vector2 = Vector2.ZERO
 
 func _ready():
     GameManager.player = self
@@ -47,7 +48,7 @@ func _physics_process(delta):
     # Gravity
     if not is_on_floor():
         velocity.y -= gravity * delta
-    # Movement input
+    # Movement input (keyboard + touch)
     var input_vec = Vector3.ZERO
     if Input.is_action_pressed("move_forward"):
         input_vec -= transform.basis.z
@@ -57,6 +58,10 @@ func _physics_process(delta):
         input_vec -= transform.basis.x
     if Input.is_action_pressed("move_right"):
         input_vec += transform.basis.x
+    # Touch input
+    if touch_move.length() > 0.1:
+        input_vec -= transform.basis.z * touch_move.y
+        input_vec += transform.basis.x * touch_move.x
     input_vec = input_vec.normalized()
     velocity.x = input_vec.x * move_speed
     velocity.z = input_vec.z * move_speed
@@ -101,6 +106,16 @@ func _find_interactable(node: Node) -> Node:
 func _do_interact():
     if interact_target and interact_target.has_method("interact"):
         interact_target.interact(self)
+
+func set_touch_move(vec: Vector2):
+    touch_move = vec
+
+func touch_jump():
+    if is_on_floor():
+        velocity.y = jump_force
+
+func touch_interact():
+    _do_interact()
 
 func get_interact_prompt() -> String:
     if interact_target and interact_target.has_method("get_prompt"):
