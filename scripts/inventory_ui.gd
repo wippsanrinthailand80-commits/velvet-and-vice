@@ -9,7 +9,7 @@ func _ready():
     _refresh()
 
 func _input(event):
-    if event is InputEventKey and event.pressed and event.scancode == KEY_I:
+    if event is InputEventKey and event.pressed and event.keycode == KEY_I:
         visible = !visible
         if visible:
             _refresh()

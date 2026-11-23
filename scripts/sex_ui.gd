@@ -36,7 +36,7 @@ func _build_pose_buttons(count: int):
     for pid in poses:
         var b = Button.new()
         b.text = SexSceneManager.poses[pid]["name"]
-        b.connect("pressed", self, "_on_pose_pressed", [pid])
+        b.pressed.connect(Callable(self, "_on_pose_pressed").bind(pid))
         pose_container.add_child(b)
 
 func _build_interact_buttons():
@@ -48,7 +48,7 @@ func _build_interact_buttons():
     for a in actions:
         var b = Button.new()
         b.text = a.capitalize()
-        b.connect("pressed", self, "_on_action_pressed", [a])
+        b.pressed.connect(Callable(self, "_on_action_pressed").bind(a))
         interact_buttons.add_child(b)
 
 func _on_pose_pressed(pid: String):

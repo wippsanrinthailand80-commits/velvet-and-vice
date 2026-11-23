@@ -21,8 +21,8 @@ func _add_collision():
     body = StaticBody3D.new()
     body.name = "Body"
     add_child(body)
-    var col = CollisionShape.new()
-    var shape = CapsuleShape.new()
+    var col = CollisionShape3D.new()
+    var shape = CapsuleShape3D.new()
     shape.radius = 0.3
     shape.height = 1.6
     col.shape = shape

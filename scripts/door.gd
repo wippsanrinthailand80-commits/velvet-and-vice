@@ -12,8 +12,8 @@ func _ready():
 func _add_collision():
     body = StaticBody3D.new()
     add_child(body)
-    var col = CollisionShape.new()
-    var shape = BoxShape.new()
+    var col = CollisionShape3D.new()
+    var shape = BoxShape3D.new()
     shape.extents = Vector3(0.5, 1.0, 0.1)
     col.shape = shape
     body.add_child(col)

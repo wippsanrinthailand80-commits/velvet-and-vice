@@ -43,7 +43,7 @@ func trigger_ending():
     # Show ending UI
     var scene = load("res://scenes/ending.tscn")
     if scene:
-        var inst = scene.instance()
+        var inst = scene.instantiate()
         get_tree().root.add_child(inst)
         if inst.has_method("show_ending"):
             inst.show_ending(ending)

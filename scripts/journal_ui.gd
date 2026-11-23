@@ -13,7 +13,7 @@ func _ready():
     _refresh()
 
 func _input(event):
-    if event is InputEventKey and event.pressed and event.scancode == KEY_J:
+    if event is InputEventKey and event.pressed and event.keycode == KEY_J:
         visible = !visible
         if visible:
             _refresh()
@@ -27,7 +27,7 @@ func _refresh(_t = null, _c = null):
     for i in range(entries.size()):
         var b = Button.new()
         b.text = entries[i]["title"]
-        b.connect("pressed", self, "_show_entry", [i])
+        b.pressed.connect(Callable(self, "_show_entry").bind(i))
         list_container.add_child(b)
     if entries.size() > 0 and current_index < entries.size():
         _show_entry(current_index)

@@ -30,7 +30,7 @@ func _on_node_changed(node_id, text, choices):
         for i in range(choices.size()):
             var b = Button.new()
             b.text = choices[i].get("text", "...")
-            b.connect("pressed", self, "_on_choice", [i])
+            b.pressed.connect(Callable(self, "_on_choice").bind(i))
             choices_container.add_child(b)
 
 func _on_choice(idx: int):

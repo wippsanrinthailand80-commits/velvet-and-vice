@@ -26,5 +26,5 @@ func _on_close():
     visible = false
 
 func _input(event):
-    if event is InputEventKey and event.pressed and event.scancode == KEY_TAB:
+    if event is InputEventKey and event.pressed and event.keycode == KEY_TAB:
         visible = !visible

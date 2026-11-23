@@ -68,7 +68,7 @@ func change_scene(path: String):
     call_deferred("_do_change_scene", path)
 
 func _do_change_scene(path: String):
-    var new_scene = load(path).instance()
+    var new_scene = load(path).instantiate()
     get_tree().current_scene.queue_free()
     get_tree().root.add_child(new_scene)
     get_tree().current_scene = new_scene

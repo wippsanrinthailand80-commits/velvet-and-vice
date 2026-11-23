@@ -14,7 +14,7 @@ func _ready():
     _refresh()
 
 func _input(event):
-    if event is InputEventKey and event.pressed and event.scancode == KEY_C:
+    if event is InputEventKey and event.pressed and event.keycode == KEY_C:
         visible = !visible
         if visible:
             _refresh()
@@ -30,7 +30,7 @@ func _refresh():
         var can = CraftingSystem.can_craft(i)
         btn.text = recipe["name"] + (" ✓" if can else " ✗")
         btn.disabled = not can
-        btn.connect("pressed", self, "_select_recipe", [i])
+        btn.pressed.connect(Callable(self, "_select_recipe").bind(i))
         recipe_list.add_child(btn)
 
 func _select_recipe(idx: int):
