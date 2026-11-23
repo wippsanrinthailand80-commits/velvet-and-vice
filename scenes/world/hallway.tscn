@@ -11,46 +11,52 @@
 script = ExtResource( 5 )
 
 [node name="Floor1" parent="." instance=ExtResource( 1 )]
-transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Floor2" parent="." instance=ExtResource( 1 )]
-transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [node name="WallL1" parent="." instance=ExtResource( 2 )]
-transform = Transform(0, 0, 1, 0, 1, 0, -1, 0, 0, -2, 0, 0)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -2, 0, 0)
 
 [node name="WallR1" parent="." instance=ExtResource( 2 )]
-transform = Transform(0, 0, -1, 0, 1, 0, 1, 0, 0, 2, 0, 0)
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2, 0, 0)
 
 [node name="DoorBedroom" parent="." instance=ExtResource( 3 )]
-transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 script = ExtResource( 4 )
 target_scene = "res://scenes/world/bedroom.tscn"
 label = "Bedroom"
 
 [node name="DoorRiko" parent="." instance=ExtResource( 3 )]
-transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 script = ExtResource( 4 )
 target_scene = "res://scenes/world/apartment_riko.tscn"
 label = "Riko's Apt"
 
 [node name="DoorAoi" parent="." instance=ExtResource( 3 )]
-transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 script = ExtResource( 4 )
 target_scene = "res://scenes/world/office_aoi.tscn"
 label = "Manager Office"
 
 [node name="DoorFamily" parent="." instance=ExtResource( 3 )]
-transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 script = ExtResource( 4 )
 target_scene = "res://scenes/world/family_home.tscn"
 label = "Family Home"
 
+[node name="DoorWaveLab" parent="." instance=ExtResource( 3 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+script = ExtResource( 4 )
+target_scene = "res://scenes/world/wave_lab.tscn"
+label = "Wave Lab"
+
 [node name="ExitDoor" parent="." instance=ExtResource( 3 )]
-transform = Transform(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 script = ExtResource( 6 )
 label = "Leave Building"
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform(0.707, -0.5, 0.5, 0, 0.707, 0.707, -0.707, -0.5, 0.5, 0, 5, 0)
+transform = Transform3D(0.707, -0.5, 0.5, 0, 0.707, 0.707, -0.707, -0.5, 0.5, 0, 5, 0)
 light_energy = 0.6
